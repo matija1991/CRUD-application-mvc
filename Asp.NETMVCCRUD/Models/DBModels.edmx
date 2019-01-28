@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FakultetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kolegiji">
+          <Key>
+            <PropertyRef Name="IdKolegij" />
+          </Key>
+          <Property Name="IdKolegij" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Trajanje" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Studenti">
+          <Key>
+            <PropertyRef Name="IdStudent" />
+          </Key>
+          <Property Name="IdStudent" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Oib" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Datum_Rodjenja" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Upisi">
+          <Key>
+            <PropertyRef Name="IdUpis" />
+          </Key>
+          <Property Name="IdUpis" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naziv_Kolegija1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Naziv_Kolegija2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Naziv_Kolegija3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="FakultetModelStoreContainer">
+          <EntitySet Name="Kolegiji" EntityType="Self.Kolegiji" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studenti" EntityType="Self.Studenti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Upisi" EntityType="Self.Upisi" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FakultetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kolegiji">
+          <Key>
+            <PropertyRef Name="IdKolegij" />
+          </Key>
+          <Property Name="IdKolegij" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Trajanje" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Studenti">
+          <Key>
+            <PropertyRef Name="IdStudent" />
+          </Key>
+          <Property Name="IdStudent" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Oib" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datum_Rodjenja" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Upisi">
+          <Key>
+            <PropertyRef Name="IdUpis" />
+          </Key>
+          <Property Name="IdUpis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Naziv_Kolegija1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Naziv_Kolegija2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Naziv_Kolegija3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FakultetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kolegijis" EntityType="Self.Kolegiji" />
+          <EntitySet Name="Studentis" EntityType="Self.Studenti" />
+          <EntitySet Name="Upisis" EntityType="Self.Upisi" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FakultetModelStoreContainer" CdmEntityContainer="FakultetEntities">
+          <EntitySetMapping Name="Kolegijis">
+            <EntityTypeMapping TypeName="FakultetModel.Kolegiji">
+              <MappingFragment StoreEntitySet="Kolegiji">
+                <ScalarProperty Name="IdKolegij" ColumnName="IdKolegij" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Trajanje" ColumnName="Trajanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studentis">
+            <EntityTypeMapping TypeName="FakultetModel.Studenti">
+              <MappingFragment StoreEntitySet="Studenti">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Oib" ColumnName="Oib" />
+                <ScalarProperty Name="Datum_Rodjenja" ColumnName="Datum_Rodjenja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Upisis">
+            <EntityTypeMapping TypeName="FakultetModel.Upisi">
+              <MappingFragment StoreEntitySet="Upisi">
+                <ScalarProperty Name="IdUpis" ColumnName="IdUpis" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Naziv_Kolegija1" ColumnName="Naziv_Kolegija1" />
+                <ScalarProperty Name="Naziv_Kolegija2" ColumnName="Naziv_Kolegija2" />
+                <ScalarProperty Name="Naziv_Kolegija3" ColumnName="Naziv_Kolegija3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
